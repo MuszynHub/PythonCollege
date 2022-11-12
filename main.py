@@ -1,6 +1,7 @@
 # Autor - Waląg Piotr
 # Data utworzenia - 11.11.2022
 # Cel programu - Obliczanie objętości, masy lub pola powierzchni brył na podstawie wprowadzonych danych
+# Python 3.10
 
 import numpy as np  # import biblioteki numpy która pomoże obliczać pierwiastki oraz funkcje trygonometryczne
 
@@ -13,6 +14,12 @@ print('5. Stożek')
 print('6. Walec')
 
 figura = int(input('Podaj numer bryły: '))  # zmienna przechowująca wybór figury przez użytkownika
+while figura <= 0 or figura > 6:
+    try:
+        if figura <= 0 or figura > 6:
+            figura = int(input('Wartość musi być z przedziału <1-6>! Spróbuj ponownie: '))
+    except:
+        print('Podana wartość nie może być ciągiem znaków!')
 
 
 def wybrana_figura(figura):  # funkcja zwracająca wybór figury do funkcji wyboru operacji
@@ -37,6 +44,12 @@ def wybierz_operacje(figura):  # funkcja zwracająca wybór operacji  do wylicze
     print("2. Masę")
     print("3. Polę powierzchni")
     operacja = int(input('Podaj numer bryły: '))
+    while operacja <= 0 or operacja > 3:
+        try:
+            if operacja <= 0 or operacja > 3:
+                operacja = int(input('Wartość musi być z przedziału <1-3>! Spróbuj ponownie: '))
+        except:
+            print('Podana wartość nie może być ciągiem znaków!')
     return rezultat(figura, operacja)
 
 
@@ -65,7 +78,6 @@ def kula(operacja):  # funkcja obliczania wartości związanych z kulą
         except:
             print('Podana wartość nie może być ciągiem znaków!')
 
-
     match operacja:
         case 1:
             objetosc = round((4 / 3) * np.pi * r ** 3, 2)
@@ -88,7 +100,6 @@ def czworoscian_foremny(operacja):  # funkcja obliczania wartości związanych z
                 a = float(input('Wartość nie może być ujemna! Spróbuj ponownie: '))
         except:
             print('Podana wartość nie może być ciągiem znaków!')
-
 
     match operacja:
         case 1:
@@ -122,8 +133,7 @@ def elipsoida(operacja):  # funkcja obliczania wartości związanych z elipsoid�
             except:
                 print('Podana wartość nie może być ciągiem znaków!')
 
-
-        if (a <= b):
+        if a <= b:
             print("Zły wybór osi")
             return wybor_osi()  # ponowne poproszenie użytkownika o wartości długości półosi jeśli podane są błędne
         else:
@@ -161,14 +171,13 @@ def ostroslup_prosty_o_podstawie_prostokatnej(operacja):  # funkcja obliczania w
         except:
             print('Podana wartość nie może być ciągiem znaków!')
 
-
     match operacja:
         case 1:
-            objetosc = round((1/3) * a ** 2 * h, 2)
+            objetosc = round((1 / 3) * a ** 2 * h, 2)
             print(objetosc)
         case 2:
             gestosc = float(input('Podaj gęstość ostrosłupa: '))
-            objetosc = round((1/3) * a ** 2 * h, 2)
+            objetosc = round((1 / 3) * a ** 2 * h, 2)
             masa = gestosc * objetosc
             print(masa)
         case 3:
@@ -192,7 +201,6 @@ def stozek(operacja):  # funkcja obliczania wartości związanych ze stożkiem
                 h = float(input('Wartość nie może być ujemna! Spróbuj ponownie: '))
         except:
             print('Podana wartość nie może być ciągiem znaków!')
-
 
     match operacja:
         case 1:
@@ -225,7 +233,6 @@ def walec(operacja):  # funkcja obliczania wartości związanych z walcem
                 h = float(input('Wartość nie może być ujemna! Spróbuj ponownie: '))
         except:
             print('Podana wartość nie może być ciągiem znaków!')
-
 
     match operacja:
         case 1:
